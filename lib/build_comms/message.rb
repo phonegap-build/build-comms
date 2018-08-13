@@ -15,7 +15,7 @@ module BuildComms
       :time_built, :auth_token, :hydration_domain, :build_unique_id,
       :duration, :plugins, :debug_domain, :debug_key, :build_token,
       :s3_manifest_url, :s3_package_url, :s3_usage, :s3_key, :cache,
-      :compile_duration, :gimlet_server, :gimlet_version
+      :compile_duration, :gimlet_server, :gimlet_version, :build_number
 
     @@default_pkg = "com.phonegap.www"
 
