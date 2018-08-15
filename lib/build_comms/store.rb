@@ -44,7 +44,7 @@ module BuildComms
         get key, bucket
       end
 
-      def signed_url bucket_name, key, expires=300, filename=nil
+      def signed_url bucket_name, key, filename=nil, expires=300
         presigner = Aws::S3::Presigner.new(:client => @client)
         opts = { :bucket=>bucket_name, :key=>key, expires_in: expires }
         if filename
@@ -53,9 +53,9 @@ module BuildComms
         presigner.presigned_url :get_object, opts
       end
 
-      def signed_url_from_url url, expires=300, filename=nil
+      def signed_url_from_url url, filename=nil, expires=300
         bucket, key = parse_url(url)
-        signed_url(bucket, key, expires, filename)
+        signed_url(bucket, key, filename, expires)
       end
 
       private

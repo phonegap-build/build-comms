@@ -119,7 +119,7 @@ describe BuildComms::Store do
     it "should pass on the expected message (with filename)" do
       @mock_signer.should_receive(:presigned_url).with(:get_object, {:bucket=>"bucket", :key=>"key.zip", :expires_in=>300, :response_content_disposition=>"attachment; filename=filename.ext"})
 
-      BuildComms::Store.signed_url "bucket", "key.zip", 300, "filename.ext"
+      BuildComms::Store.signed_url "bucket", "key.zip", "filename.ext", 300
     end
   end
 
