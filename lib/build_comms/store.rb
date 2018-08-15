@@ -37,6 +37,12 @@ module BuildComms
         archive_object(key, bucket, archive_bucket)
       end
 
+      def archive_prefix (url, archive_bucket)
+        bucket, prefix = parse_url(url)
+        prefix << '/' unless prefix.end_with?('/') # ensure it's a "dir"
+        archive_dir(prefix, bucket, archive_bucket)
+      end
+
       def get_url url
         bucket, key = parse_url(url)
 
@@ -60,15 +66,26 @@ module BuildComms
 
       private
 
+      def archive_dir (prefix, bucket, archive_bucket)
+        resp = client.list_objects_v2({
+          bucket: bucket,
+          prefix: prefix
+        })
+        resp.contents.each { |obj|
+          archive_object(obj.key, bucket, archive_bucket)
+        }
+        resp.contents.count
+      end
+
       def archive_object (key, bucket, archive_bucket)
-        client.copy_object({
+        object = Aws::S3::Object.new(bucket, key)
+
+        object.move_to({
           :bucket => archive_bucket, 
           :key => "#{bucket}/#{key}",
           :storage_class => "REDUCED_REDUNDANCY",
-          :server_side_encryption => "AES256",
-          :copy_source => URI.encode("#{bucket}/#{key}")
+          :server_side_encryption => "AES256"
         })
-        client.delete_object({:bucket=>bucket, :key=>key})
         true
       end
 
