@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    BuildComms (2.2.0)
+    BuildComms (2.2.1)
       aws-sdk (~> 2.0)
       json
       slack-notifier

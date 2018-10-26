@@ -38,7 +38,7 @@ module BuildComms
       poller.poll(wait_time_seconds:interval) do |msg|
         begin
           yield msg
-        rescue SocketError, AWS::Errors::Base, Net::OpenTimeout => e
+        rescue SocketError, Aws::Errors::ServiceError, Net::OpenTimeout => e
           msg = "QUEUE=#{queue_name} gonna move on but heres the deets: (#{e.message})"
           log.error msg
           log.error e
