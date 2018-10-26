@@ -13,12 +13,14 @@ end
 
 require 'aws-sdk'
 require 'json'
+require 'slack-notifier'
 
 # internal dependencies
 require 'build_comms/base'
 require 'build_comms/version'
 require 'build_comms/utils'
 require 'build_comms/sns'
+require 'build_comms/slack'
 
 require 'build_comms/message'
 require 'build_comms/store'

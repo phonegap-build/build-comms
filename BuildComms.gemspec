@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "aws-sdk", "~>2.0"
   s.add_dependency "json"
+  s.add_dependency "slack-notifier"
 
   s.add_development_dependency "rspec"
 end

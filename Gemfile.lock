@@ -1,9 +1,10 @@
 PATH
   remote: .
   specs:
-    BuildComms (2.1.0)
+    BuildComms (2.2.0)
       aws-sdk (~> 2.0)
       json
+      slack-notifier
 
 GEM
   remote: http://rubygems.org/
@@ -32,6 +33,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
+    slack-notifier (2.3.2)
 
 PLATFORMS
   ruby
