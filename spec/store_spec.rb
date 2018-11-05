@@ -132,9 +132,7 @@ describe BuildComms::Store do
     it "should pass on the expected message if from url" do
       url = "http://s3.amazonaws.com/bucket/IosKey/key.zip"
       Aws::S3::Client.any_instance.should_receive(:delete_object).with({:bucket=>"bucket", :key=>"IosKey/key.zip" })
-      Aws::S3::Client.any_instance.should_receive(:copy_object).with({:bucket=>"archive_bucket", :key=>"bucket/IosKey/key.zip", :storage_class=>"REDUCED_REDUNDANCY", :server_side_encryption=>"AES256", :copy_source=>"bucket/IosKey/key.zip"})
-
-      BuildComms::Store.archive(url, "archive_bucket")
+      BuildComms::Store.delete(url)
     end
   end
 
