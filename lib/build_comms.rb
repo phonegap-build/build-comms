@@ -14,6 +14,7 @@ end
 require 'aws-sdk'
 require 'json'
 require 'slack-notifier'
+require 'open-uri'
 
 # internal dependencies
 require 'build_comms/base'
@@ -28,6 +29,7 @@ require 'build_comms/queue'
 require 'build_comms/watcher'
 require 'build_comms/kms'
 require 'build_comms/alert'
+require 'build_comms/tags'
 
 # set AWS region
 Aws.config.update({region: 'us-east-1'})
