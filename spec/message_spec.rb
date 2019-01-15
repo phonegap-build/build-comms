@@ -221,6 +221,12 @@ describe BuildComms::Message do
     it "should set auth_token to some token" do
       @msg.auth_token.should == "some token"
     end
+
+    it "should allow removal of key" do
+      @msg.auth_token.should == "some token"
+      @msg.remove("auth_token")
+      @msg.auth_token.should be_nil
+    end
   end
 
   it "should have a method called to_json" do

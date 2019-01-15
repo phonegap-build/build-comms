@@ -53,6 +53,10 @@ module BuildComms
       @hash["id"] = x
     end
 
+    def remove(key)
+      @hash.delete(key)
+    end
+
     def self.from_hash(h)
       m = Message.new
 
